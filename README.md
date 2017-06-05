@@ -37,4 +37,4 @@ sudo docker run -p 10.0.2.1:3999:80 --name honeypot2-wordpress --link honeypot2-
 
 3. Manually go to each Wordpress address and set 
 
-![alt text](https://raw.githubusercontent.com/lmateti/honeyreq/blob/master/Wordpress.png)
+![alt text](https://raw.githubusercontent.com/lmateti/honeyreq/master/Wordpress.png)
