@@ -18,10 +18,15 @@ sudo ip addr add 192.168.43.202 dev enp2s0
 
 2. Setting up Docker images
 sudo docker run -p 10.0.0.1:3306:3306 --name production-mysql -e MYSQL_ROOT_PASSWORD=mysecpas -d mysql:latest
+
 sudo docker run -p 10.0.0.2:3306:3306 --name honeypot1-mysql -e MYSQL_ROOT_PASSWORD=mysecpas -d mysql:latest
+
 sudo docker run -p 10.0.0.3:3306:3306 --name honeypot2-mysql -e MYSQL_ROOT_PASSWORD=mysecpas -d mysql:latest
+
 sudo docker run -p 10.0.2.1:3333:80 --name production-wordpress --link produkcijski-mysql:mysql -d wordpress
+
 sudo docker run -p 10.0.2.1:3666:80 --name honeypot1-wordpress --link honeypot1-mysql:mysql -d wordpress
+
 sudo docker run -p 10.0.2.1:3999:80 --name honeypot2-wordpress --link honeypot2-mysql:mysql -d wordpress
 
 3. Manually go to each Wordpress address and set 
