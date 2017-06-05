@@ -35,6 +35,27 @@ sudo docker run -p 10.0.2.1:3666:80 --name honeypot1-wordpress --link honeypot1-
 
 sudo docker run -p 10.0.2.1:3999:80 --name honeypot2-wordpress --link honeypot2-mysql:mysql -d wordpress
 
-3. Manually go to each Wordpress address and set 
+3. Wordpress configuration for being behind reverse proxy
+
+Go to each Wordpress transport address in your browser (10.0.2.1:33333, 10.0.2.1:3666, 10.0.2.1:3999) 
+and install them using famous 5 minute Wordpress installation. Remember username/password for each Wordpress instance that you choose!
+Now change Wordpress Address and Site Address to 192.168.43.202.
+Once you do that, you should get an error.
+That is OK because you shouldn't be able to access Wordpress site directly any longer (that's the point of reverse proxying)
+
+If you think you made a mistake or can't remember password (example: honeypot1-wordpress), simply do the following:
+sudo docker stop honeypot1-wordpress honeypot1-mysql
+sudo docker rm honeypot1-wordpress honeypot1-mysql
+... repeat the docker run commands for setting them up again ...
 
 ![alt text](https://raw.githubusercontent.com/lmateti/honeyreq/master/Wordpress.png)
+
+4. Now stop all images besides the production ones (the point is to dinamically start up honeypots on demand):
+
+sudo docker stop honeypot1-wordpress honeypot1-mysql honeypot2-wordpress honeypot2-mysql
+
+5. Allow Lua script to access Docker sock (prototype only!):
+
+sudo chmod o+rwx /var/run/docker.sock
+
+6. Start up Nginx (OpenResty) and access the production/honeypot environments on 192.168.43.202 (even on LAN from other machine)
