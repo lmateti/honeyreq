@@ -12,9 +12,13 @@ Work was done on Ubuntu operating system; there is no garantee that it will work
 1. Setting up virtual network (common interface names: eth0, eth1, enp2s0...)
 
 sudo ip addr add 10.0.0.1/8 dev enp2s0
+
 sudo ip addr add 10.0.0.2/8 dev enp2s0 
+
 sudo ip addr add 10.0.0.3/8 dev enp2s0
+
 sudo ip addr add 10.0.2.1/8 dev enp2s0
+
 sudo ip addr add 192.168.43.202 dev enp2s0
 
 2. Setting up Docker images
