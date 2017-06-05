@@ -59,3 +59,40 @@ sudo docker stop honeypot1-wordpress honeypot1-mysql honeypot2-wordpress honeypo
 sudo chmod o+rwx /var/run/docker.sock
 
 6. Start up Nginx (OpenResty) and access the production/honeypot environments on 192.168.43.202 (even on LAN from other machine)
+
+## How to repeat tests after machine restart
+1. Setting up virtual network (common interface names: eth0, eth1, enp2s0...)
+
+sudo ip addr add 10.0.0.1/8 dev enp2s0
+
+sudo ip addr add 10.0.0.2/8 dev enp2s0 
+
+sudo ip addr add 10.0.0.3/8 dev enp2s0
+
+sudo ip addr add 10.0.2.1/8 dev enp2s0
+
+sudo ip addr add 192.168.43.202 dev enp2s0
+
+2. Setting up Docker images
+
+sudo docker start production-mysql
+
+sudo docker start honeypot1-mysql
+
+sudo docker start honeypot2-mysql
+
+sudo docker start production-wordpress
+
+sudo docker start honeypot1-wordpress
+
+sudo docker start honeypot2-wordpress
+
+3. Now stop all images besides the production ones (the point is to dinamically start up honeypots on demand):
+
+sudo docker stop honeypot1-wordpress honeypot1-mysql honeypot2-wordpress honeypot2-mysql
+
+4. Allow Lua script to access Docker sock (prototype only!):
+
+sudo chmod o+rwx /var/run/docker.sock
+
+5. Start up Nginx (OpenResty) and access the production/honeypot environments on 192.168.43.202 (even on LAN from other machine)
