@@ -7,8 +7,8 @@ Work was done on Ubuntu operating system; there is no garantee that it will work
 2. Install [Docker](https://docs.docker.com/engine/installation/)
 - Download [Official Wordpress image](https://hub.docker.com/_/wordpress/)
 - Download [Official MySQL image](https://hub.docker.com/_/mysql/)
-3. Put checkLoginCred.lua into lua OpenResty folder.
-4. Put nginx.conf into OpenResty Nginx conf folder.
+3. Put checkLoginCred.lua into OpenResty Nginx "lua" folder.
+4. Put nginx.conf into OpenResty Nginx "conf" folder.
 
 ## Configuration
 1. Setting up virtual network (common interface names: eth0, eth1, enp2s0...)
