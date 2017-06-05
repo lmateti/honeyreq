@@ -10,6 +10,7 @@ Work was done on Ubuntu operating system; there is no garantee that it will work
 
 ## Configuration
 1. Setting up virtual network (common interface names: eth0, eth1, enp2s0...)
+
 sudo ip addr add 10.0.0.1/8 dev enp2s0
 sudo ip addr add 10.0.0.2/8 dev enp2s0 
 sudo ip addr add 10.0.0.3/8 dev enp2s0
@@ -17,6 +18,7 @@ sudo ip addr add 10.0.2.1/8 dev enp2s0
 sudo ip addr add 192.168.43.202 dev enp2s0
 
 2. Setting up Docker images
+
 sudo docker run -p 10.0.0.1:3306:3306 --name production-mysql -e MYSQL_ROOT_PASSWORD=mysecpas -d mysql:latest
 
 sudo docker run -p 10.0.0.2:3306:3306 --name honeypot1-mysql -e MYSQL_ROOT_PASSWORD=mysecpas -d mysql:latest
